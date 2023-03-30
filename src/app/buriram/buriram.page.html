@@ -1,0 +1,58 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start" routerLink="/index">
+      <ion-button> <ion-icon style="color: #666666;" name="arrow-back-outline"></ion-icon> </ion-button>
+    </ion-buttons>
+    <ion-title style="font-size: 18px; color: #666666;">จังหวัดบุรีรัมย์</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div style="width: 100%; height: 250px;" *ngIf=" buriram?.tr_file?.length > 0 ">
+    <img [src]="endPoint + buriram?.tr_file[0]?.file_name " style="width: 100%; height: 100%;" alt="">
+  </div>
+  <div class="boxBuriramPage" style="color: #666666;">
+    <div class="boxShadowCard paddingBuriram" >
+      <div style="padding: 8px;">
+        <p class="textColor">วิสัยทัศน์จังหวัดบุรีรัมย์</p>
+        <p>{{buriram?.bru_vision}}</p>
+      </div>
+    </div>
+    <div class="boxShadowCard paddingBuriram" >
+      <div style="padding: 8px;">
+        <p class="textColor">คำขวัญประจำจังหวัดบุรีรัมย์</p>
+        <!-- <div>{{buriram?.bru_slogan}}</div> -->
+        <div  [innerHTML]="buriram?.bru_slogan"></div>
+      </div>
+    </div>
+    <div class="boxShadowCard paddingBuriram" >
+      <div style="padding: 8px;">
+        <p class="textColor">ความเป็นมา</p>
+        <p>{{buriram?.bru_history}}</p>
+      </div>
+
+    </div>
+    <div class="boxShadowCard paddingBuriram" >
+      <div style="padding: 8px;">
+        <p class="textColor">อาณาเขต</p>
+        <p>{{buriram?.bru_territory}}</p>
+      </div>
+
+    </div>
+    <div class="boxShadowCard paddingBuriram" >
+      <div style="padding: 8px;">
+        <p class="textColor">ข้อมูลติดต่อ</p>
+        <p>facebook  : {{buriram?.bru_facebook}}</p>
+        <p>instagram : {{buriram?.bru_instagram}}</p>
+        <p>website   : {{buriram?.bru_website}}</p>
+      </div>
+    </div>
+  </div>
+
+</ion-content>
+<ion-footer style="display: contents;" class="ion-no-border">
+  <app-tabs-page></app-tabs-page>
+</ion-footer>

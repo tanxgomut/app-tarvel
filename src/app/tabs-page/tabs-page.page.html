@@ -1,0 +1,29 @@
+<ion-tabs style="z-index: -1; display: contents;">
+  <ion-tab-bar slot="bottom">
+
+    <ion-tab-button routerLink="/buriram" style="width: 20%;">
+      <ion-icon name="earth-outline"></ion-icon>
+      <ion-label style="font-size: 8px;">บุรีรัมย์</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button routerLink="/place" style="width: 20%;">
+      <ion-icon name="camera-outline"></ion-icon>
+      <ion-label style="font-size: 8px;">สถานที่ท่องเที่ยว</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button routerLink="/index" style="width: 20%;">
+      <ion-icon name="home-outline"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="placeRecommend()" style="width: 20%;">
+      <ion-icon name="star-outline"></ion-icon>
+      <ion-label  style="font-size: 8px;">สำหรับคุณ</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="gotoProfile()" style="width: 20%;">
+      <ion-icon name="people-outline"></ion-icon>
+      <ion-label style="font-size: 8px;">โปรไฟล์</ion-label>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</ion-tabs>

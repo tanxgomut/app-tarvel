@@ -1,0 +1,83 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="closeModel()">
+      <ion-button> <ion-icon name="arrow-back-outline"></ion-icon> </ion-button>
+    </ion-buttons>
+    <ion-title style="font-size: 18px;">{{place?.place_name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div style="padding: 8px;">
+    <div class="boxShadowCard boxCardPlacePage"  style="height: {{(place?.tr_file.length > 0) ? '200px' : '85px'}} ;">
+      <div  *ngIf="place?.tr_file.length > 0" style="padding: 10px 0px 6px 0px;">
+        <swiper
+        [config]="subSlide"
+        #subSwiper
+        class="">
+        <ng-template swiperSlide  *ngFor="let file of place.tr_file" >
+          <img (click)="modalViewImage(place?.tr_file)" [src]="endPoint +''+ file.file_name" alt="" style="width: 95%; height: 100px; border-radius: 10px;" >
+        </ng-template>
+        </swiper>
+      </div>
+      <div class="boxText" >
+        <div class="title">
+          <p class="placeName">{{place?.place_name}}</p>
+          <p *ngIf="km !== undefined" class="km">{{km | number:'1.0-2'}} km</p>
+          <p *ngIf="km === undefined" class="km">{{place?.km | number:'1.0-2'}} km</p>
+        </div>
+        <p class="stmList">
+          <ion-icon style="color: #C60808;  margin-right: 6px;" name="apps-outline"></ion-icon>
+          <ion-label class="linestmList">{{place?.tm_name}}
+          </ion-label>
+        </p>
+        <p class="address">
+          <ion-icon style="color: #5E1594; margin-right: 6px;" name="location"></ion-icon>
+          <ion-label class="lineAddress" >{{place?.stmList}}
+          </ion-label>
+        </p>
+      </div>
+    </div>
+
+    <div class="boxShadowCard detailPlace" (click)="openGoogleMaps(place?.latitude, place?.longtitude)" >
+      <ion-label style=" color: #1E90FF; width: 90%;" >ดูเส้นทาง</ion-label>
+      <ion-icon class="iconOpenMap" name="navigate-circle"></ion-icon>
+    </div>
+
+    <div class="boxShadowCard boxDetailPlace-Detail" >
+      <div style=" color: #1E90FF; " >เกี่ยวกับสถานที่นี้</div>
+      <div style="font-size: 14px;">{{place?.description}}</div>
+
+      <div class="topicDetailPlace"  >อัตราค่าบริการ</div>
+      <div style="font-size: 14px;" >ผู้ใหญ่ : {{place?.tr_service_fee[0]?.adulthood}}</div>
+      <div style="font-size: 14px;">เด็ก : {{place?.tr_service_fee[0]?.kid}}</div>
+
+      <div class="topicDetailPlace"  >บริการ</div>
+      <div style="font-size: 14px;">{{place?.serviceList}}</div>
+
+      <div class="topicDetailPlace" >ตำแหน่งที่ตั้ง</div>
+      <div style="font-size: 14px;">{{place?.address +' '+ place?.district_name +' '+ place?.province +' '+ place?.zipcode}}</div>
+      <div class="topicDetailPlace" >เวลาเปิดทำการ</div>
+      <div *ngIf="work">
+        <div *ngIf="work?.monday?.active === true" style="font-size: 14px;" >วันจันทร์ : {{work?.monday?.start +' - '+ work?.monday?.end}} </div>
+        <div *ngIf="work?.tuseday?.active === true" style="font-size: 14px;" >วันอังคาร : {{work?.tuseday?.start +' - '+ work?.tuseday?.end}} </div>
+        <div *ngIf="work?.wednesday?.active === true" style="font-size: 14px;" >วันพุธ : {{work?.wednesday?.start +' - '+ work?.wednesday?.end}} </div>
+        <div *ngIf="work?.Thursday?.active === true" style="font-size: 14px;" >วันพฤหัสบดี : {{work?.Thursday?.start +' - '+ work?.Thursday?.end}} </div>
+        <div *ngIf="work?.Friday?.active === true" style="font-size: 14px;" >วันศุกร์ : {{work?.Friday?.start +' - '+ work?.Friday?.end}} </div>
+        <div *ngIf="work?.Saturday?.active === true" style="font-size: 14px;" >วันเสาร์ : {{work?.Saturday?.start +' - '+ work?.Saturday?.end}} </div>
+        <div *ngIf="work?.Sunday?.active === true" style="font-size: 14px;" >วันอาทิตย์ : {{work?.Sunday?.start +' - '+ work?.Sunday?.end}} </div>
+        <div *ngIf="work?.mon_sun?.active === true" style="font-size: 14px;" >วันจันทร์ - วันศุกร์ : {{work?.mon_sun?.start +' - '+ work?.mon_sun?.end}} </div>
+        <div *ngIf="work?.allday?.active === true" style="font-size: 14px;" >ทุกวัน : {{work?.allday?.start +' - '+ work?.allday?.end}} </div>
+
+      </div>
+      <div *ngIf="!work">
+        <div style="font-size: 14px;" >-</div>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>

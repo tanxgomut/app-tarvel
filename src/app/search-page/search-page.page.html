@@ -1,0 +1,48 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start" routerLink="/index">
+      <ion-button> <ion-icon name="arrow-back-outline"></ion-icon> </ion-button>
+    </ion-buttons>
+    <ion-title style="font-size: 18px;">ค้นหาสถานที่ท่องเที่ยว</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row style="padding: 10px;">
+      <ion-col size="12" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+        <div style="width: 80%;">
+          <ion-searchbar [(ngModel)]="keyword" style="padding: 0px;" animated="true" placeholder="ค้นหาสถานที่ท่องเที่ยว"></ion-searchbar>
+        </div>
+        <div style="width: 15%;">
+          <ion-button (click)="gotoSearch()" expand="block" style="--background: #000000 ;color: #ffffff;"><ion-icon name="search" style="font-size: 20px;"></ion-icon></ion-button>
+        </div>
+      </ion-col>
+      <ion-col size="12">
+        <ion-list>
+          <ion-item button  lines="none" class="SearchLocation" >
+            <ion-select [value]="location" (ionChange)="selectChange($event)" interface="popover" placeholder="ใกล้ฉัน" style=" width: 100%; color:  #1E90FF; ">
+              <ion-select-option value=""><ion-icon name="locate"></ion-icon>ใกล้ฉัน</ion-select-option>
+              <ion-select-option *ngFor="let row of districtList" [value]="row?.district_id">{{row?.district_name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col size="12" *ngFor="let main of mainList" (click)="setKeyword(main.tm_id)">
+        <div class="boxShadowCard mainBoxSearch"
+        style=" {{(main.check) ? 'border: 2px solid ' + main.color + ' ;'  : ''}}
+                background: {{main.bg}}; ">
+          <ion-label style="padding: 5px 5px 5px 15px; color: {{main.color}};">{{main.tm_name}} </ion-label>
+        </div>
+      </ion-col>
+      <ion-col size="12" style="margin: 10px 0px 10px 0px; color: #666666;">
+        <ion-label>tag</ion-label>
+      </ion-col>
+      <ion-col size="12" style="display: inherit;">
+        <div (click)="setSubKeyword(sub.stm_id)" *ngFor="let sub of subList" class="subBoxSearch" style="{{(sub.check) ? 'border: 2px solid #666666 ;'  : ''}}">
+          <ion-label> {{sub.stm_name}}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

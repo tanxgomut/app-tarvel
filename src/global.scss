@@ -1,0 +1,542 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,200;0,300;0,400;0,500;1,100&display=swap');
+@import "swiper/scss";
+@import "swiper/scss/navigation";
+@import "swiper/scss/pagination";
+
+
+
+* {
+  font-family: 'Sarabun', sans-serif;
+}
+
+
+ion-content {
+  --background: #fbfbfb;
+  --offset-bottom: auto !important;
+  --overflow: hidden;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+// ion-content {
+//   --offset-bottom: auto!important;
+//   --overflow: hidden;
+//   overflow: auto;
+//   &::-webkit-scrollbar {
+//     display: none;
+//   }
+// }
+
+ion-grid{
+  padding: 0px;
+}
+
+ion-row{
+  padding: 0px;
+}
+
+ion-col{
+  padding: 0px;
+}
+
+p{
+  margin: 10px 0px;
+}
+
+ion-loading.custom-loading {
+  --background: #e3edff;
+  --spinner-color: #1c6dff;
+  color: #1c6dff;
+  & .loading-wrapper.sc-ion-loading-md {
+    border-radius: 2px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+}
+
+
+
+//  login page
+
+.loginLogin {
+  --background: #222;
+  --height: 40%;
+  --width: 90%;
+  --border-radius: 15px;
+}
+
+.registerLogin {
+  --background: #222;
+  --height: 80%;
+  --width: 90%;
+  --border-radius: 15px;
+}
+
+.login-content{
+  --padding-bottom: 10px;
+  --padding-end: 10px;
+  --padding-start: 10px;
+  --padding-top: 10px;
+}
+
+.input-email-login{
+  // --padding-bottom: 0px;
+  // --padding-end: 0px;
+  // --padding-start: 0px;
+  // --padding-top: 0px;
+  // --inner-padding-top: 0px;
+  // --inner-padding-start: 0px;
+  // --inner-padding-end: 0px;
+  // --inner-padding-bottom: 0px;
+  // --inner-padding-bottom: 0px;
+  --color: #000000;
+  --border-color: #000000;
+  --border-style: solid;
+  --border-width: 0.5px;
+  --border-radius: 20px;
+  --ripple-color: #5E1594;
+  --highlight-color-focused: #000000;
+}
+
+ion-toast.custom-toast {
+  --background: #1E90FF;
+  --color: #ffff;
+  --border-radius: 30px;
+  --height: 35px;
+  --box-shadow: none;
+}
+
+.rangeLogin{
+  --height: 20px;
+  padding: 10px;
+  --bar-height: 4px;
+}
+
+// login page
+
+// home page
+.d-flex-c{
+  display: flex;
+  justify-content: center;
+}
+
+.d-flex-ac{
+  display: flex;
+  align-items: center;
+}
+
+.btnStart{
+  --background: #1E90FF; --padding-start: 15px; --padding-end: 15px; width: 70%;
+}
+
+.textbtnStart{
+  font-size: 12px; font-weight: 600;
+}
+
+.titleHomePage{
+  padding: 0px 16px; font-size: 30px ; font-weight: 600;
+}
+
+.signInWithHomePage{
+  color: #5E1594; text-align: center; margin-top: 20px; margin-bottom: 10px;
+}
+
+.signInWithEmailHomePage{
+  margin-top: 20px; text-align: center; font-size: 18px; color: #1E90FF; font-weight: 600;
+}
+
+.boxRegisterHome{
+  text-align: center; margin-top: 20px; margin-bottom: 20px;
+}
+
+.btnRegisterHome{
+  margin-left: 4px; color: #5E1594; font-weight: 400;
+}
+
+// home page
+
+//  profile page
+.topicProfile{
+  color: #1E90FF;
+  margin-bottom: 8px;
+}
+.subtopic{
+  color: #666666;
+  font-size: 14px;
+}
+
+.boxShadowCard{
+  box-shadow: 0 3px 10px rgb(0 0 0 / 10%);
+}
+
+.textColor{
+  color: #1E90FF;
+}
+
+.rangeProfile{
+  --height: 20px;
+  padding: 0px;
+  --bar-height: 4px;
+  pointer-events: none;
+}
+
+.updaterangeProfile{
+  --height: 30px;
+  padding: 0px;
+  --bar-height: 4px;
+}
+
+.attentionUpdate {
+  --background: #222;
+  --height: 40%;
+  --width: 90%;
+  --border-radius: 15px;
+}
+
+.passwordUpdate {
+  --background: #222;
+  --height: 60%;
+  --width: 90%;
+  --border-radius: 15px;
+}
+
+.profileUpdate {
+  --height: 60%;
+  --width: 90%;
+  --border-radius: 15px;
+}
+
+.uploadImageUpdate {
+  --height: 40%;
+  --width: 80%;
+  --border-radius: 15px;
+}
+//profile page
+
+
+// index page
+
+.nowrapLine{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.iconSub{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.d-f-b{
+  display: flex;
+  justify-content: space-between;
+}
+
+// .subSlide{
+//   & .swiper-slide {
+//     flex-shrink: 0;
+//     width: 80px !important;
+//     height: 100%;
+//     position: relative;
+//     transition-property: transform;
+//   }
+// }
+
+.titleTopicSlide{
+  width: 70%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    height: 22px;
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+.btnViewAll{
+  font-size: 12px; color: #1E90FF; margin-right: 10px;
+}
+
+.boxSlideTopic{
+  display: inline-block; width: 95%; height: 150px; background-color: #ffffff;
+  border-radius: 10px;
+  img{
+    display: block; width: 100%; height: 85px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+  }
+  p{
+    margin: 0px;
+  }
+  .placeName{
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .placeTag{
+    font-size: 10px;
+    margin: 2px 0px 1px 0px;
+  }
+  .address{
+    font-size: 10px;
+    margin: 2px 0px 1px 0px;
+  }
+//   .swiper {
+//     margin-left: auto;
+//     margin-right: auto;
+//     position: relative;
+//     overflow: hidden;
+//     list-style: none;
+//     padding: 0;
+//     z-index: 1;
+//     padding-bottom: 10px;
+// }
+}
+
+.ripple-parent {
+  position: relative;
+  overflow: hidden;
+}
+
+.custom-parent {
+  color: #c2c2c2;
+}
+
+.lineTopic12{
+    width: 100%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    line-height: 16px;
+    height: 16px;
+}
+
+.lineTopic16{
+  width: 100%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    line-height: 22px;
+    height: 20px;
+}
+
+.searchBtnIndex{
+  position: absolute; top: 20px; z-index: 2; width: 100%; display: flex; justify-content: center;
+  .boxSearch{
+    height: 35px; width: 90%;    background: #ffffff;
+      border-radius: 7px;
+      padding: 10px;
+      font-size: 14px;
+      display: flex;
+    align-items: center;
+  }
+  .textLabel{
+    text-align: start;display: flex;
+        align-items: center;
+        color: #666666;
+  }
+}
+
+.mainTourismIndex{
+  margin: 10px;
+  .position{
+    width: 100%;
+    position: relative;
+    .text{
+      position: absolute;
+      top: 0px;
+      z-index: 2;
+      // background: #030303;
+      width: 100%;
+      padding: 6px;
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+      label{
+        color: white;
+        font-size: 16px;
+        font-weight: 500;
+      }
+    }
+  }
+  img{
+    height: 100px;
+    width: 100%;
+    border-radius: 10px;
+  }
+}
+
+
+// indexpage
+
+// place page
+.boxshadowSearch{
+  --box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.01), 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 5px 0px rgba(0, 0, 0, 0.12) !important;
+}
+
+.searchbar-input.sc-ion-searchbar-md{
+  // padding-left: 55px;
+  //   padding-right: 55px;
+  //   padding-top: 6px;
+  //   padding-bottom: 6px;
+  //   background-position: left 8px center;
+  //   height: auto;
+  //   font-size: 16px;
+  //   font-weight: 400;
+  //   line-height: 30px;
+    border-radius: 10px;
+}
+
+.boxCardPlacePage{
+   width: 100%; margin-top: 10px; margin-bottom: 10px; border-radius: 10px;
+  p{
+    margin: 0px;
+  }
+  .boxText{
+    padding: 8px;
+    .title{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .placeName{
+        width: 65%;
+        font-size: 18px;
+        font-weight: 600;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+        line-height: 22px;
+        height: 22px;
+      }
+      .km{
+        color: #1E90FF;
+        font-size: 12px;
+      }
+    }
+    .stmList{
+      width: 100%;
+      display: flex;
+      align-items: center;
+    .linestmList{
+      width: 90%;
+      margin-top: 4px;
+      font-size: 12px;
+      overflow: hidden;
+      height: 16px;
+    }
+    }
+    .address{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      .lineAddress{
+        width: 90%;
+        margin-top: 4px;
+        font-size: 12px;
+        overflow: hidden;
+        height: 16px;
+      }
+
+    }
+  }
+}
+// place page
+// place detail
+.detailPlace{
+  padding: 10px; display: flex; justify-content: space-between; border-radius: 10px; margin-top: 20px;
+}
+.iconOpenMap{
+  width: 10%; color: #000000; margin-right: 6px; text-align: end;
+}
+
+.boxDetailPlace-Detail{
+  padding: 10px; margin-top: 20px; border-radius: 10px;
+}
+
+.topicDetailPlace{
+  color: #1E90FF; margin-top: 20px;
+}
+// place detail
+//  view image
+.boxImagePreview{
+  position: fixed; top: 30%; bottom: 30%; left: 0%; right: 0%;
+}
+// view image
+
+
+//  buriram page
+.boxBuriramPage{
+  padding: 8px;
+}
+.paddingBuriram{
+  margin-top: 20px; border-radius: 10px;
+}
+//  buriram page
+
+
+// search
+.activeSearch{
+  border: 2px solid #27A426;
+}
+
+.mainBoxSearch{
+  margin: 5px 0px 5px 0px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.subBoxSearch{
+  background: #efefef;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 10px;
+  margin: 5px 10px 5px 0px;
+  color: #666666;
+}
+
+.SearchLocation{
+  --border-radius: 10px;
+          --min-height: 30px;
+          --color: #1E90FF;
+          --background: #C7DEF9;
+}
+// search

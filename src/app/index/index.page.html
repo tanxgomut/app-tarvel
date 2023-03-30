@@ -1,0 +1,95 @@
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div style="position: relative;">
+    <div class="searchBtnIndex">
+      <div (click)="gotoSearch()" class="boxSearch ion-activatable ripple-parent" >
+        <ion-ripple-effect class="custom-parent"></ion-ripple-effect>
+        <ion-label class="textLabel"> <ion-icon name="search" style="margin-right: 10px; font-size: 20px; color: #666666;"></ion-icon> ค้นหาสถานที่ท่องเที่ยวตรงใจคุณ</ion-label>
+      </div>
+    </div>
+  </div>
+  <swiper
+    [config]="slideOpts"
+    #swiper >
+    <ng-template swiperSlide >
+      <div style="width: 100%; height: 250px;">
+        <img src="../../assets/image/you.png" style="width: 100%; height: 100%;" alt="">
+      </div>
+    </ng-template>
+    <ng-template swiperSlide >
+      <div style="width: 100%; height: 250px;">
+        <img src="../../assets/image/cha.jpg" style="width: 100%; height: 100%;" alt="">
+      </div>
+    </ng-template>
+    <ng-template swiperSlide >
+      <div style="width: 100%; height: 250px;">
+        <img src="../../assets/image/KhaoKradong.jpg" style="width: 100%; height: 100%;" alt="">
+      </div>
+    </ng-template>
+    <ng-template swiperSlide >
+      <div style="width: 100%; height: 250px;">
+        <img src="../../assets/image/test.jpg" style="width: 100%; height: 100%;" alt="">
+      </div>
+    </ng-template>
+    <ng-template swiperSlide >
+      <div style="width: 100%; height: 250px;">
+        <img src="../../assets/image/c.jpg" style="width: 100%; height: 100%;" alt="">
+      </div>
+    </ng-template>
+  </swiper>
+
+  <swiper
+  [config]="subSlide"
+  style="margin-top: 15px; "
+  #subSwiper
+  class="subSlide">
+  <ng-template swiperSlide  *ngFor="let row of subModelList" >
+    <div (click)="gotoPlaceSub(row.stm_id)"  class="boxShadowCard ion-activatable ripple-parent" style="width: 90%; height: 60px; background-color: {{row.color}};border-radius: 10px;">
+      <ion-icon class="iconSub" name="albums-outline"></ion-icon>
+      <ion-ripple-effect class="custom-parent"></ion-ripple-effect>
+    </div>
+    <div class="d-flex-c" >
+        <div class="nowrapLine">{{row.stm_name}}</div>
+    </div>
+  </ng-template>
+  </swiper>
+
+  <div type="button" *ngFor="let row of topicList" style="margin-top: 20px;">
+    <div class="col-12 d-f-b" >
+      <label class="titleTopicSlide" >{{row.pss_name}}</label>
+      <label class="btnViewAll" (click)="gotoTopic(row?.pss_id)">ดูทั้งหมด</label>
+    </div>
+    <swiper
+    [config]="topicSlide"
+    style="margin-top: 15px;padding-bottom: 10px; "
+    class="subSlide">
+    <ng-template swiperSlide  *ngFor="let place of row?.placeList; index as i;">
+      <div (click)="gotoPlaceDetail(place?.place_id)" class="boxSlideTopic boxShadowCard ion-activatable ripple-parent ">
+        <ion-ripple-effect class="custom-parent"></ion-ripple-effect>
+        <img [src]="endPoint + place.filePath"  alt="">
+        <div style="padding: 5px;">
+          <p class="placeName lineTopic16">{{place?.place_name}}</p>
+          <p *ngIf="place?.stmList !== null" class="placeTag lineTopic12 "><ion-icon style="color: #5E1594;" name="pricetags"></ion-icon> {{place?.stmList}}</p>
+          <p class="address lineTopic12"><ion-icon style="color: #C60808;" name="location"></ion-icon> {{place.address +" "+ place.district_name + " " + place.province + " " + place.zipcode}}</p>
+        </div>
+      </div>
+    </ng-template>
+    </swiper>
+  </div>
+
+  <div *ngFor="let row of mainModelList" (click)="gotoPlaceMain(row.tm_id)" class="mainTourismIndex ion-activatable ripple-parent" >
+    <ion-ripple-effect class="custom-parent"></ion-ripple-effect>
+    <div class="position">
+      <div class="text">
+        <label for="">{{row.tm_name}}</label>
+      </div>
+    </div>
+    <img [src]="'../../assets/image/' + row.img" >
+  </div>
+
+</ion-content>
+<ion-footer style="display: contents;" class="ion-no-border">
+  <app-tabs-page></app-tabs-page>
+</ion-footer>

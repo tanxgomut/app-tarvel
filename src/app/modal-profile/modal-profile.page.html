@@ -1,0 +1,165 @@
+<ion-content *ngIf="page === 'Attention'" class="login-content" style="background: #fbfbfb;">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" style="text-align: end; font-size: 18px; color: #1E90FF; font-weight: 600;">
+        <ion-icon (click)="closeModel()" name="close-outline"></ion-icon>
+      </ion-col>
+      <ion-col size="12" style="text-align: center; font-size: 18px; color: #1E90FF; font-weight: 600;">
+        <ion-label>{{page}}</ion-label>
+      </ion-col>
+      <ion-col size="12">
+        <ion-label>แหล่งวัฒธรรม</ion-label>
+        <ion-range  class="updaterangeProfile" [value]="+attention.culture" [ticks]="true" [snaps]="true" [min]="0" [max]="3" (ionChange)="onIonChange($event, 'm1')" ></ion-range>
+        <ion-label>แหล่งธรรมชาติ</ion-label>
+        <ion-range  class="updaterangeProfile" [value]="+attention.nature" [ticks]="true" [snaps]="true" [min]="0" [max]="3" (ionChange)="onIonChange($event, 'm2')" ></ion-range>
+        <ion-label>ความสนใจพิเศษ</ion-label>
+        <ion-range  class="updaterangeProfile" [value]="+attention.special" [ticks]="true" [snaps]="true" [min]="0" [max]="3" (ionChange)="onIonChange($event, 'm3')" ></ion-range>
+      </ion-col>
+      <ion-col size="12" style="margin-top: 15px; margin-bottom: 20px;" >
+        <ion-button (click)="saveAttention()" expand="block" color="dark" shape="round" >บันทึก</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-content *ngIf="page === 'uploadImage'" class="login-content" style="background: #fbfbfb;">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" style="text-align: end; font-size: 18px; color: #1E90FF; font-weight: 600;">
+        <ion-icon (click)="closeModel()" name="close-outline"></ion-icon>
+      </ion-col>
+      <ion-col size="12" style="text-align: center; font-size: 18px; color: #1E90FF; font-weight: 600;">
+        <ion-label>เปลี่ยนรูปโปรไฟล์</ion-label>
+      </ion-col>
+      <ion-col size="12" style="margin-top: 20px;" >
+        <div *ngIf="fileList?.length === 0" style="display: flex; align-items: center; justify-content: center;">
+            <!-- <ion-input type="file" name="image" (change)="uploadFile($event)"></ion-input>
+            <div *ngFor="let row of fileList;let i = index" >
+              <img  class="image-box" [src]="row?.fileData" style="height: 150px; width: 150px; border-radius: 5px;" >
+            </div> -->
+            <label for="uploadImage" class="">
+              <ion-icon style="width: 100px; height: 100px; color: #1E90FF; opacity: 60%;" name="image"></ion-icon>
+              <!-- <img src="../../assets/" style="width: 100px; height: 100px; opacity: 30%;"> -->
+            </label>
+            <input type="file" id="uploadImage" accept=".jpg, .jpeg, .gif, .png" (change)="uploadFile($event)" hidden>
+        </div>
+        <div *ngIf="fileList?.length > 0" style="display: flex; align-items: center; justify-content: center;">
+          <div *ngFor="let row of fileList;let i = index" >
+            <img [src]="row?.fileData" style="height: 100px; width: 100px; border-radius: 50%;" >
+          </div>
+      </div>
+      </ion-col>
+      <ion-col size="12" style="margin-top: 20px; margin-bottom: 20px;" >
+        <ion-button (click)="saveImageProfile()" expand="block" color="dark" shape="round" >บันทึก</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-content *ngIf="page === 'password'" class="login-content" style="background: #fbfbfb;">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" style="text-align: end; font-size: 18px; color: #1E90FF; font-weight: 600;">
+        <ion-icon (click)="closeModel()" name="close-outline"></ion-icon>
+      </ion-col>
+      <ion-col size="12" style="text-align: center; font-size: 18px; color: #1E90FF; font-weight: 600;">
+        <ion-label>เปลี่ยนรหัสผ่าน</ion-label>
+      </ion-col>
+      <ion-col size="12" style="margin-top: 10px;" >
+        <ion-item class="input-email-login">
+          <ion-label position="floating">รหัสผ่านเดิม</ion-label>
+          <ion-input color="primary" type="password" [(ngModel)]="oldPassword" placeholder="รหัสผ่านเดิม"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" style="margin-top: 10px;" >
+        <ion-item class="input-email-login">
+          <ion-label position="floating">รหัสผ่านใหม่</ion-label>
+          <ion-input color="primary" type="password" [(ngModel)]="newPassword" placeholder="รหัสผ่านใหม่"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" style="margin-top: 10px;" >
+        <ion-item class="input-email-login">
+          <ion-label position="floating">รหัสผ่านใหม่ อีกครั้ง</ion-label>
+          <ion-input color="primary" type="password" [(ngModel)]="CPassword" placeholder="รหัสผ่านใหม่ อีกครั้ง"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" style="margin-top: 15px; margin-bottom: 20px;" >
+        <ion-button (click)="savePassword()" expand="block" color="dark" shape="round" >บันทึก</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-content *ngIf="page === 'profile'" class="login-content" style="background: #fbfbfb;">
+  <ion-grid>
+    <ion-row *ngIf="userInfo">
+      <ion-col size="12" style="text-align: end; font-size: 18px; color: #1E90FF; font-weight: 600;">
+        <ion-icon (click)="closeModel()" name="close-outline"></ion-icon>
+      </ion-col>
+      <ion-col size="12" style="text-align: center; font-size: 18px; color: #1E90FF; font-weight: 600;">
+        <ion-label>แก้ไขโปรไฟล์</ion-label>
+      </ion-col>
+      <ion-col size="12" style="margin-top: 10px;" >
+        <ion-item class="input-email-login">
+          <ion-label position="floating">ชื่อโปรไฟล์</ion-label>
+          <ion-input color="primary" [(ngModel)]="userInfo.username" placeholder="ชื่อโปรไฟล์"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" style="margin-top: 10px;" >
+        <ion-item class="input-email-login">
+          <ion-label position="floating">เบอร์โทรศัพท์</ion-label>
+          <ion-input color="primary" [(ngModel)]="userInfo.phone" placeholder="เบอร์โทรศัพท์"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" style="margin-top: 10px;" >
+        <ion-item class="input-email-login">
+          <ion-label position="floating">เพศ</ion-label>
+          <ion-select [value]="userInfo.gender"  interface="popover" placeholder="เพศ" (ionChange)="handleChange($event)" >
+            <ion-select-option value="ชาย">ชาย</ion-select-option>
+            <ion-select-option value="หญิง">หญิง</ion-select-option>
+            <ion-select-option value="ไม่ระบุ">ไม่ระบุ</ion-select-option>
+          </ion-select>
+          <!-- <ion-input color="primary" type="password" [(ngModel)]="CPassword" placeholder="รหัสผ่านใหม่ อีกครั้ง"></ion-input> -->
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" style="margin-top: 10px;" >
+        <ion-item class="input-email-login">
+          <ion-label position="floating">วันเกิด *ปี-เดือน-วัน</ion-label>
+          <ion-input color="primary"  value="{{userInfo.birthday | date: 'YYYY-MM-dd'}}" id="date" class="ion-text-end" placeholder="วันเกิด"></ion-input>
+          <!-- <ion-datetime-button datetime="datetime" value="2022-12-12"></ion-datetime-button> -->
+          <ion-popover trigger="date" size="auto">
+            <ng-template>
+              <ion-datetime  displayFormat="YYYY-MM-dd" presentation="date" [(ngModel)]="userInfo.birthday" ></ion-datetime>
+            </ng-template>
+          </ion-popover>
+        </ion-item>
+        <!-- <ion-item>
+          <ion-label>Pick date</ion-label>
+          <ion-input value="{{date | date: 'YYYY-MM-dd'}}" id="date" class="ion-text-end" />
+          <ion-popover trigger="date" size="auto">
+            <ng-template>
+              <ion-datetime
+              displayFormat="YYYY-MM-dd"
+                presentation="date"
+                [(ngModel)]="date"
+              ></ion-datetime>
+            </ng-template>
+          </ion-popover>
+        </ion-item> -->
+      </ion-col>
+      <!-- <ion-modal [keepContentsMounted]="true" trigger="test">
+        <ng-template>
+          <ion-datetime
+          displayFormat="YYYY-MM-DD"
+            id="datetime"
+            presentation="date"
+          ></ion-datetime>
+          <ion-datetime id="datetime"></ion-datetime>
+        </ng-template>
+      </ion-modal> -->
+      <ion-col size="12" style="margin-top: 15px; margin-bottom: 20px;" >
+        <ion-button (click)="saveProfile()" expand="block" color="dark" shape="round" >บันทึก</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
