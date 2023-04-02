@@ -30,7 +30,8 @@ import { TabsPagePageModule } from './tabs-page/tabs-page.module';
   providers: [
     { provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy
-    }
+    },
+
   ],
   bootstrap: [AppComponent],
 })

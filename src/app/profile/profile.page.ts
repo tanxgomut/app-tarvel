@@ -61,6 +61,8 @@ export class ProfilePage implements OnInit {
     const {value} = await Preferences.get({ key: 'userInfo' });
     const userInfo = JSON.parse(value!);
     this.userInfo = userInfo;
+    console.log( this.userInfo);
+
     if(this.userInfo){
       this.getAttentionMember(this.userInfo.member_id);
       this.getImageProfile(this.userInfo.member_id);
@@ -102,7 +104,7 @@ export class ProfilePage implements OnInit {
 
   async presentAlert() {
     const alert = await this.alertController.create({
-      header: 'ต้องการล็อกเอ้าท์หรื่อไม่ ?',
+      header: 'ต้องการล็อกเอ้าท์หรือไม่ ?',
       buttons: [
         {
           text: 'Cancel',

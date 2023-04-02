@@ -58,11 +58,11 @@
       </ion-col>
       <ion-col size="12" style="margin-top: 10px;">
         <div class="d-flex-c" style="width: 100%;">
-          <ion-button (click)="modalProfile('password')" color="dark"  size="small" shape="round" style="width: 45%;">
+          <ion-button *ngIf="userInfo.login_with === 'email'" (click)="modalProfile('password')" color="dark"  size="small" shape="round" style="width: 45%;">
             <ion-icon slot="start" name="create-outline"></ion-icon>
             <ion-label>เปลี่ยนรหัสผ่าน</ion-label>
           </ion-button>
-          <ion-button (click)="modalProfile('profile')" color="dark"  size="small" shape="round" style="width: 45%;">
+          <ion-button (click)="modalProfile('profile')" color="dark"  size="small" shape="round" style="width: {{(userInfo.login_with === 'email') ? '45' : '90'}}%;">
             <ion-icon slot="start" name="person-circle-outline"></ion-icon>
             <ion-label>แก้ไขโปร์ไฟล์</ion-label>
           </ion-button>

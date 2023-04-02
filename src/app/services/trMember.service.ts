@@ -52,9 +52,26 @@ export class TrMemberService {
       }));
   }
 
+  public googleSignIn(email: any, type:any) {
+    const params = '?email=' + email + '&type=' + type;
+    return this.httpClient.get<any>(environment.endPointWeb + 'tr_member/googleSignIn' + params).pipe(map(respons => {
+        return {
+            serviceResult: respons
+        }
+      }));
+  }
+
   public checkEmailMember(email: any){
     const params = '?email=' + email ;
     return this.httpClient.get<any>(environment.endPointWeb + 'tr_member/checkEmailMember' + params).pipe(map(respons => {
+        return {
+            serviceResult: respons
+        }
+      }));
+  }
+
+  public googleRegister(data: any) {
+    return this.httpClient.post<any>((environment.endPointWeb + 'tr_member/googleRegister'), data).pipe(map(respons => {
         return {
             serviceResult: respons
         }

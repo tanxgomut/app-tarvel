@@ -4,4 +4,10 @@
     <string name="title_activity_main">oneionic</string>
     <string name="package_name">io.ionic.starter</string>
     <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="facebook_app_id">541569761353240</string>
+    <string name="fb_login_protocol_scheme">fb541569761353240</string>
+    <string name="facebook_client_token">760d57b67217b7b2d264a179ad24e57b</string>
+    <string name="facebook_app_secret">6ab3578eb92c35b694467d1a95c5c162</string>
+
+    <string name="server_client_id">337656762520-hcscbcjcnk4u8f313ie57ion21hlu735.apps.googleusercontent.com</string>
 </resources>

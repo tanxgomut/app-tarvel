@@ -124,8 +124,6 @@ export class LoginPage implements OnInit {
   signIn(){
     if(this.user.email != null && this.user.password != null){
       this.trMemberService.appSignIn(this.user).pipe(takeUntil(this.ngUnsubscribe)).subscribe(result => {
-        console.log(result.serviceResult);
-
         if (result.serviceResult.status === "Success") {
           this.userInfo = result.serviceResult.value[0];
           const data = new trMember();
