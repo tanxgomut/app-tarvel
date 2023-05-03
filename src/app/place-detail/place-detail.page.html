@@ -71,11 +71,17 @@
         <div *ngIf="work?.Sunday?.active === true" style="font-size: 14px;" >วันอาทิตย์ : {{work?.Sunday?.start +' - '+ work?.Sunday?.end}} </div>
         <div *ngIf="work?.mon_sun?.active === true" style="font-size: 14px;" >วันจันทร์ - วันศุกร์ : {{work?.mon_sun?.start +' - '+ work?.mon_sun?.end}} </div>
         <div *ngIf="work?.allday?.active === true" style="font-size: 14px;" >ทุกวัน : {{work?.allday?.start +' - '+ work?.allday?.end}} </div>
-
       </div>
       <div *ngIf="!work">
         <div style="font-size: 14px;" >-</div>
       </div>
+      <div class="topicDetailPlace" >ติดต่อ</div>
+      <div style="font-size: 14px;" >facebook : {{(place?.tr_contact[0]?.facebook) ? place.tr_contact[0]?.facebook : '-'}}</div>
+      <div style="font-size: 14px;" >instagram : {{(place?.tr_contact[0]?.instagram) ? place.tr_contact[0]?.instagram : '-'}}</div>
+      <div style="font-size: 14px;" >line : {{(place?.tr_contact[0]?.line) ? place.tr_contact[0]?.line : '-'}}</div>
+      <div style="font-size: 14px;" >website : {{(place?.tr_contact[0]?.website) ? place.tr_contact[0]?.website : '-'}}</div>
+      <div style="font-size: 14px;" >phone : {{(place?.tr_contact[0]?.phone) ? place.tr_contact[0]?.phone : '-'}}</div>
+
     </div>
 
   </div>

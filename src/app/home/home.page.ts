@@ -79,18 +79,27 @@ export class HomePage implements OnInit {
     const url = `https://graph.facebook.com/${this.token.userId}?fields=id,name,picture.width(720),birthday,email&access_token=${this.token.token}`;
     this.http.get(url).subscribe(res => {
       this.user = res;
-      console.log(JSON.stringify(this.user));
+      this.printCurrentPosition(this.user, 'facebook');
+      // this.user = JSON.stringify(res);
+
+      // console.log(JSON.stringify(this.user));
     });
   }
 
-  async googleSignIn() {
-    const user = await GoogleAuth.signIn();
-    this.usergoogle = user;
-    if(this.usergoogle.id){
-      this.printCurrentPosition(this.usergoogle, 'google');
-    }else{
-      this.presentToast('Google Sign In Error');
+  async googleSignIn(mode : any) {
+    if(mode === 'google'){
+      const user = await GoogleAuth.signIn();
+      this.usergoogle = user;
+      if(this.usergoogle.id){
+        this.printCurrentPosition(this.usergoogle, 'google');
+      }else{
+        this.presentToast('Google Sign In Error');
+      }
     }
+    if(mode === 'facebook'){
+      this.login() ;
+    }
+
   }
 
   async getUserInfo(){
@@ -151,13 +160,14 @@ export class HomePage implements OnInit {
 
 
   registerMemberGmail(member: any, type: any , loading: any){
-    this.trMemberService.checkEmailMember(member.email).pipe(takeUntil(this.ngUnsubscribe)).subscribe(result => {
+    this.trMemberService.checkEmailMember((type === 'google') ? member.email : member.id).pipe(takeUntil(this.ngUnsubscribe)).subscribe(result => {
       if (result.serviceResult.status === "Success") {
         const checkEmail = result.serviceResult.value;
         if(checkEmail.length === 0){
-          this.member.username = member.familyName + ' ' + member.givenName
-          this.member.email = member.email;
+          this.member.username = (type === 'google') ? member.familyName + ' ' + member.givenName : member.name;
+          this.member.email = (type === 'google') ? member.email : member.id;
           this.member.active = 'Y'
+          this.member.profile_name = (type === 'google') ? null : member.email;
           this.member.createBy = 'system'
           this.member.createDate = new Date();
           this.member.login_with = type;
@@ -178,7 +188,7 @@ export class HomePage implements OnInit {
               this.attention.updateDate = new Date();
               this.trAttentionService.createORupdate(this.attention).pipe(takeUntil(this.ngUnsubscribe)).subscribe(result => {
                 if (result.serviceResult.status === "Success") {
-                  this.signIn(this.member.email,type ,loading);
+                  this.signIn(this.member.email ,type ,loading);
                 }
               }, err => {
                 loading.dismiss();
@@ -193,7 +203,7 @@ export class HomePage implements OnInit {
         }
         if(checkEmail.length > 0){
           if(checkEmail[0].login_with === 'google' || checkEmail[0].login_with === 'facebook'){
-            this.signIn(member.email, type, loading)
+            this.signIn((type === 'google') ? member.email : member.id, type, loading)
           }else{
             loading.dismiss();
             this.presentToast('อีเมลล์นี้มีผู้ใช้แล้ว');
@@ -246,7 +256,12 @@ export class HomePage implements OnInit {
       backdropDismiss: false,
     });
     await loading.present();
-    this.registerMemberGmail(user, type, loading);
+    if(type === 'google'){
+      this.registerMemberGmail(user, type, loading);
+    }
+    if(type === 'facebook'){
+      this.registerMemberGmail(user, type, loading);
+    }
   };
 
 }

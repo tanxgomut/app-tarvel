@@ -26,7 +26,7 @@ public class MainActivity extends BridgeActivity {
       com.getcapacitor.community.facebooklogin.FacebookLogin.class
     );
 //    AppEventsLogger.activateApp(this);
-    //debugHashKey()
+    debugHashKey();
   }
 
   private void debugHashKey() {
@@ -39,14 +39,15 @@ public class MainActivity extends BridgeActivity {
                 md.update(signature.toByteArray());
                 Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
                 String hashKey = Base64.encodeToString(md.digest(), Base64.DEFAULT);
-                FacebookSdk.addKeyHash("io.ionic.starter", hashKey);
+//                 FacebookSdk.setAppli ("io.ionic.starter", hashKey);
+ //            FacebookSdk.addApp
 //                  FacebookSdk.setClientToken("760d57b67217b7b2d264a179ad24e57b");
 //                  FacebookSdk.setApplicationId("541569761353240");
 //                  FacebookSdk.setFacebookDomain("facebook.com");
 //                  FacebookSdk.setGraphApiVersion("v11.0");
 //                  FacebookSdk.setAutoLogAppEventsEnabled(true);
 //                  FacebookSdk.setIsDebugEnabled(true);
-////                  FacebookSdk.setLegacyTokenUpgradeEnabled(false);
+//                  FacebookSdk.setLegacyTokenUpgradeEnabled(false);
 //                  FacebookSdk.setAdvertiserIDCollectionEnabled(true);
 //                  FacebookSdk.addLoggingBehavior(LoggingBehavior.APP_EVENTS);
 //                  FacebookSdk.addLoggingBehavior(LoggingBehavior.DEVELOPER_ERRORS);

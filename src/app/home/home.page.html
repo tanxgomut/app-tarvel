@@ -18,32 +18,32 @@
         </div>
       </ion-col> -->
       <ion-col size="12" class="signInWithHomePage">
-        <ion-label>Sign In With</ion-label>
+        <ion-label>Login Google</ion-label>
       </ion-col>
       <ion-col size="6" style="display: flex; justify-content: center;">
-        <ion-thumbnail (click)="googleSignIn()" style="--size: 50px">
+        <ion-thumbnail (click)="googleSignIn('google')" style="--size: 50px">
           <img src="../../assets/icon/google.png" alt="">
         </ion-thumbnail>
       </ion-col>
       <ion-col size="6" class="d-flex-c" >
-        <ion-thumbnail (click)="login()" style="--size: 50px">
+        <ion-thumbnail (click)="googleSignIn('facebook')" style="--size: 50px">
           <img src="../../assets/icon/facebook.png" alt="">
         </ion-thumbnail>
       </ion-col>
       <ion-col size="12" class="signInWithEmailHomePage">
-        <ion-label button (click)="modalLogin('login')" >SignIn With Email</ion-label>
+        <ion-label button (click)="modalLogin('login')" >Login In</ion-label>
       </ion-col>
       <ion-col size="12" class="boxRegisterHome">
         <ion-label style="font-size: 14px;">ยังไม่เป็นสมาชิกกับเรา ? <ion-text (click)="modalLogin('Register')"  class="btnRegisterHome"> Register </ion-text></ion-label>
       </ion-col>
-      <ion-col size="12" *ngIf="user">
+      <!-- <ion-col size="12" *ngIf="user">
         <ion-label button  >{{user}}</ion-label>
       </ion-col>
       <ion-col size="12" *ngIf="usergoogle">
         <p >{{usergoogle.email}}</p>
         <p >{{usergoogle.familyName}}</p>
         <p >{{usergoogle.givenName}}</p>
-      </ion-col>
+      </ion-col> -->
     </ion-row>
   </ion-grid>
 </ion-content>

@@ -14,7 +14,7 @@
   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-grid *ngIf="!userInfo" style="padding: 8px;">
+  <ion-grid *ngIf="!userInfo else haveUserInfo" style="padding: 8px;">
     <ion-row>
       <ion-col size="12" style="display: flex; align-items: center; justify-content: center;">
           <ion-icon name="alert" style="color: #1E90FF; font-size: 200px;"></ion-icon>
@@ -29,62 +29,64 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-grid *ngIf="userInfo" style="padding: 8px; margin-top: 10px;">
-    <ion-row>
-      <ion-col size="12">
-        <div style="display: flex;">
-          <div  style="width: 100px;">
-            <ion-avatar style="width: 100px;height: 100px; ">
-              <img [src]="endPoint +''+ fileList?.file_name" />
-            </ion-avatar>
+  <ng-template #haveUserInfo>
+    <ion-grid  style="padding: 8px; margin-top: 10px;">
+      <ion-row>
+        <ion-col size="12">
+          <div style="display: flex;">
+            <div  style="width: 100px;">
+              <ion-avatar style="width: 100px;height: 100px; ">
+                <img [src]="endPoint +''+ fileList?.file_name" />
+              </ion-avatar>
+            </div>
+            <div style="display: flex; align-items: end;">
+              <ion-icon (click)="modalProfile('uploadImage')" name="camera" style="color: #1E90FF; font-size: 20px; margin-right: 8px;"></ion-icon>
+            </div>
+            <div class="d-flex-ac" style="width: 100%;">
+              <ion-label style="font-size: 20px; font-weight: 600;">{{(userInfo.username !== null) ? userInfo.username : '-'}}</ion-label>
+            </div>
           </div>
-          <div style="display: flex; align-items: end;">
-            <ion-icon (click)="modalProfile('uploadImage')" name="camera" style="color: #1E90FF; font-size: 20px; margin-right: 8px;"></ion-icon>
+        </ion-col>
+        <ion-col size="12" style="margin-top: 10px; padding-left: 10px;">
+          <p class="topicProfile">Email</p>
+          <p class="subtopic">{{(userInfo.email !== null) ? ((userInfo.login_with === 'facebook') ? userInfo.profile_name : userInfo.email ) : '-'}}</p>
+          <p class="topicProfile">เบอร์โทรศัพท์</p>
+          <p class="subtopic">{{(userInfo.phone !== null) ? userInfo.phone : '-'}}</p>
+          <p class="topicProfile">เพศ</p>
+          <p class="subtopic">{{(userInfo.gender !== null) ? userInfo.gender : '-'}}</p>
+          <p class="topicProfile">วันเกิด *ปี-เดือน-วัน</p>
+          <p class="subtopic">{{(userInfo.birthday !== null) ? (userInfo.birthday | date: 'YYYY-MM-dd') : '-'}}</p>
+        </ion-col>
+        <ion-col size="12" style="margin-top: 10px;">
+          <div class="d-flex-c" style="width: 100%;">
+            <ion-button *ngIf="userInfo.login_with === 'email'" (click)="modalProfile('password')" color="dark"  size="small" shape="round" style="width: 45%;">
+              <ion-icon slot="start" name="create-outline"></ion-icon>
+              <ion-label>เปลี่ยนรหัสผ่าน</ion-label>
+            </ion-button>
+            <ion-button (click)="modalProfile('profile')" color="dark"  size="small" shape="round" style="width: {{(userInfo.login_with === 'email') ? '45' : '90'}}%;">
+              <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+              <ion-label>แก้ไขโปร์ไฟล์</ion-label>
+            </ion-button>
           </div>
-          <div class="d-flex-ac" style="width: 100%;">
-            <ion-label style="font-size: 20px; font-weight: 600;">{{(userInfo.username !== null) ? userInfo.username : '-'}}</ion-label>
-          </div>
-        </div>
-      </ion-col>
-      <ion-col size="12" style="margin-top: 10px; padding-left: 10px;">
-        <p class="topicProfile">Email</p>
-        <p class="subtopic">{{(userInfo.email !== null) ? userInfo.email : '-'}}</p>
-        <p class="topicProfile">เบอร์โทรศัพท์</p>
-        <p class="subtopic">{{(userInfo.phone !== null) ? userInfo.phone : '-'}}</p>
-        <p class="topicProfile">เพศ</p>
-        <p class="subtopic">{{(userInfo.gender !== null) ? userInfo.gender : '-'}}</p>
-        <p class="topicProfile">วันเกิด *ปี-เดือน-วัน</p>
-        <p class="subtopic">{{(userInfo.birthday !== null) ? (userInfo.birthday | date: 'YYYY-MM-dd') : '-'}}</p>
-      </ion-col>
-      <ion-col size="12" style="margin-top: 10px;">
-        <div class="d-flex-c" style="width: 100%;">
-          <ion-button *ngIf="userInfo.login_with === 'email'" (click)="modalProfile('password')" color="dark"  size="small" shape="round" style="width: 45%;">
-            <ion-icon slot="start" name="create-outline"></ion-icon>
-            <ion-label>เปลี่ยนรหัสผ่าน</ion-label>
-          </ion-button>
-          <ion-button (click)="modalProfile('profile')" color="dark"  size="small" shape="round" style="width: {{(userInfo.login_with === 'email') ? '45' : '90'}}%;">
-            <ion-icon slot="start" name="person-circle-outline"></ion-icon>
-            <ion-label>แก้ไขโปร์ไฟล์</ion-label>
-          </ion-button>
-        </div>
-      </ion-col>
-      <ion-col size="12" style="margin-top: 10px;">
-        <ion-card (click)="modalProfile('Attention')" class="boxShadowCard" style="border-radius: 24px;">
-          <ion-card-header>
-            <ion-card-title style="color: #5E1594; text-align: center;">Attention</ion-card-title>
-          </ion-card-header>
-          <ion-card-content style="color: #000000;">
-              <ion-label >แหล่งวัฒธรรม</ion-label>
-              <ion-range class="rangeProfile" [ticks]="true" [snaps]="true" [value]="+AttentionValue?.culture" [min]="0" [max]="3" ></ion-range>
-              <ion-label>แหล่งธรรมชาติ</ion-label>
-              <ion-range class="rangeProfile"  [ticks]="true" [snaps]="true" [value]="+AttentionValue?.nature" [min]="0" [max]="3" ></ion-range>
-              <ion-label>ความสนใจพิเศษ</ion-label>
-              <ion-range class="rangeProfile"  [ticks]="true" [snaps]="true" [value]="+AttentionValue?.special" [min]="0" [max]="3" ></ion-range>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+        </ion-col>
+        <ion-col size="12" style="margin-top: 10px;">
+          <ion-card (click)="modalProfile('Attention')" class="boxShadowCard" style="border-radius: 24px;">
+            <ion-card-header>
+              <ion-card-title style="color: #5E1594; text-align: center;">Attention</ion-card-title>
+            </ion-card-header>
+            <ion-card-content style="color: #000000;">
+                <ion-label >แหล่งวัฒธรรม</ion-label>
+                <ion-range class="rangeProfile" [ticks]="true" [snaps]="true" [value]="+AttentionValue?.culture" [min]="0" [max]="3" ></ion-range>
+                <ion-label>แหล่งธรรมชาติ</ion-label>
+                <ion-range class="rangeProfile"  [ticks]="true" [snaps]="true" [value]="+AttentionValue?.nature" [min]="0" [max]="3" ></ion-range>
+                <ion-label>ความสนใจพิเศษ</ion-label>
+                <ion-range class="rangeProfile"  [ticks]="true" [snaps]="true" [value]="+AttentionValue?.special" [min]="0" [max]="3" ></ion-range>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-template>
 </ion-content>
 
 <ion-footer style="display: contents;" class="ion-no-border">

@@ -35,35 +35,28 @@
       <ion-col size="12" style="text-align: center; font-size: 18px; color: #1E90FF; font-weight: 600;">
         <ion-label>{{page}}</ion-label>
       </ion-col>
-      <ion-col size="12" style="margin-top: 15px;" >
-        <ion-item class="input-email-login">
-          <ion-label position="floating">email</ion-label>
-          <ion-input color="primary" [(ngModel)]="member.email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$" email placeholder="email"></ion-input>
-          <ion-note slot="error">Invalid email</ion-note>
-        </ion-item>
-      </ion-col>
-      <ion-col size="12" style="margin-top: 10px;" >
-        <ion-item class="input-email-login">
-          <ion-label position="floating">username</ion-label>
-          <ion-input color="primary" [(ngModel)]="member.username" placeholder="username"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col size="12" style="margin-top: 10px;" >
-        <ion-item class="input-email-login">
-          <ion-label position="floating">password</ion-label>
-          <ion-input color="primary" type="password" [(ngModel)]="member.password" placeholder="password"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col size="12" style="margin-top: 10px;" >
-        <ion-item class="input-email-login">
-          <ion-label position="floating">comfirm password</ion-label>
-          <ion-input color="primary" type="password" [(ngModel)]="cpassword" placeholder="comfirm password"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col size="12" style="margin-top: 10px; text-align: center; font-size: 18px; color: #5E1594; font-weight: 600;" >
-        <ion-label>Attention</ion-label>
-      </ion-col>
       <ion-col size="12">
+        <form  [formGroup]="test">
+          <ion-item class="input-email-login">
+            <ion-label position="floating">email</ion-label>
+            <ion-input color="primary" formControlName="email" placeholder="email"></ion-input>
+            <ion-note slot="error">Invalid email</ion-note>
+          </ion-item>
+          <ion-item class="input-email-login">
+            <ion-label position="floating">username</ion-label>
+            <ion-input color="primary" formControlName="username" placeholder="username"></ion-input>
+          </ion-item>
+          <ion-item class="input-email-login">
+            <ion-label position="floating">password</ion-label>
+            <ion-input color="primary" type="password" formControlName="password" placeholder="password"></ion-input>
+          </ion-item>
+          <ion-item class="input-email-login">
+            <ion-label position="floating">comfirm password</ion-label>
+            <ion-input color="primary" type="password" formControlName="cpassword" placeholder="comfirm password"></ion-input>
+          </ion-item>
+        </form>
+      </ion-col>
+      <ion-col size="12" style="margin-top: 15px;">
         <ion-label>แหล่งวัฒธรรม</ion-label>
         <ion-range  class="rangeLogin" [ticks]="true" [snaps]="true" [min]="0" [max]="3" (ionChange)="onIonChange($event, 'm1')" ></ion-range>
         <ion-label>แหล่งธรรมชาติ</ion-label>
@@ -72,7 +65,7 @@
         <ion-range  class="rangeLogin" [ticks]="true" [snaps]="true" [min]="0" [max]="3" (ionChange)="onIonChange($event, 'm3')" ></ion-range>
       </ion-col>
       <ion-col size="12" style="margin-top: 15px; margin-bottom: 20px;" >
-        <ion-button expand="block" color="dark" shape="round" (click)="registerMember()">สมัครสมาชิก</ion-button>
+        <ion-button expand="block" color="dark" shape="round" (click)="registerMember()" >สมัครสมาชิก</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

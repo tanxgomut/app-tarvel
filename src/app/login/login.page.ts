@@ -7,7 +7,7 @@ import { trMember } from '../model/trMember';
 import { TrAttentionService } from '../services/trAttention.service';
 import { TrMemberService } from '../services/trMember.service';
 import { Preferences } from '@capacitor/preferences';
-// import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -23,22 +23,28 @@ export class LoginPage implements OnInit {
     email: null,
     password: null
   }
+  public test : any
   public member = new trMember();
   public cpassword: any;
   public userInfo: any;
   public lastEmittedValue: any;
-  // ionicForm: FormGroup | any;
 
   constructor(
     private modalController: ModalController,
     private trMemberService: TrMemberService,
     private trAttentionService: TrAttentionService,
     private router: Router,
-    private toastController: ToastController
-    // public formBuilder: FormBuilder
+    private toastController: ToastController,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.test = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required ],
+      cpassword: ['', Validators.required],
+      email: ['',Validators.email],
+    });
   }
 
   ngOnDestroy() {
@@ -62,8 +68,11 @@ export class LoginPage implements OnInit {
   }
 
   registerMember(){
-    if(this.member.email !== null && this.member.email !== undefined && this.member.username !== null && this.member.username !== undefined
-      && this.member.password !== null && this.member.password !== undefined && this.cpassword !== null && this.cpassword !== undefined){
+    if(this.test.valid){
+        this.member.email = this.test.value.email;
+        this.member.username = this.test.value.username;
+        this.member.password = this.test.value.password;
+        this.cpassword = this.test.value.cpassword;
         if( this.member.password === this.cpassword){
           this.attention.culture = (this.attention.culture) ? this.attention.culture : 0;
           this.attention.nature = (this.attention.nature) ? this.attention.nature : 0;

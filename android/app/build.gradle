@@ -39,7 +39,7 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
     implementation project(':capacitor-cordova-android-plugins')
-    implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
+    implementation 'com.facebook.android:facebook-android-sdk:latest.release'
     implementation 'com.facebook.android:facebook-applinks:latest.release'
     implementation 'com.facebook.android:facebook-common:latest.release'
     implementation 'com.facebook.android:facebook-core:latest.release'
